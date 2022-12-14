@@ -37,27 +37,33 @@ public class Zork {
         String filename = args[0];
         Map<String, Location> locations = new HashMap<>();
         Console cons = System.console();
-        
+
         // read the file and build the world
         locations = buildWorld(readFile(filename));
         // TEST WORLD
         // for (String key : locations.keySet()) {
-        //     System.out.println(locations.get(key).getDescription());
+        // System.out.println(locations.get(key).getDescription());
         // }
 
         // Start the game, set current location as start
         Location currentLocation = locations.get(start);
+        // display
+        System.out.println(currentLocation.getName() + "\n" + currentLocation.getDescription());
         while (true) {
-            // display
-            System.out.println(currentLocation.getName() + "\n" + currentLocation.getDescription());
-            Set<String> validDirections = currentLocation.getOptions();
             // get valid inputs
-            System.out.println(validDirections);
+            Set<String> validDirections = currentLocation.getOptions();
+            // System.out.println(validDirections);
+
             // get user input
             String userInput = cons.readLine("> ");
-
-            if (validDirections.contains(userInput)) {
+            if (userInput.equalsIgnoreCase("exit")) {
+                System.out.println("Exiting...");
+                break;
+            } else if (userInput.equalsIgnoreCase("look")) {
+                System.out.println(currentLocation.getName() + "\n" + currentLocation.getDescription());
+            } else if (validDirections.contains(userInput)) {
                 currentLocation = locations.get(currentLocation.getDirection(userInput));
+                System.out.println(currentLocation.getName() + "\n" + currentLocation.getDescription());
             } else {
                 System.err.println("You can't get there...");
             }
