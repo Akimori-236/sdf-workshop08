@@ -27,13 +27,12 @@ public class Location {
         this.name = name;
     }
 
-    public String getDescription() {
-        String desc = this.description.replaceAll("<break>", "\n");
-        return desc;
+    public String getDescription() {;
+        return this.description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description.replaceAll("<break>", "\n");
     }
 
     public String getDirection(String d) {
