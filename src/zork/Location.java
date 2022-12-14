@@ -27,7 +27,8 @@ public class Location {
         this.name = name;
     }
 
-    public String getDescription() {;
+    public String getDescription() {
+        ;
         return this.description;
     }
 

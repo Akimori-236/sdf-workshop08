@@ -60,11 +60,14 @@ public class Zork {
                 System.out.println("Exiting...");
                 break;
             } else if (userInput.equalsIgnoreCase("look")) {
+                // reprint description again
                 System.out.println(currentLocation.getName() + "\n" + currentLocation.getDescription());
             } else if (validDirections.contains(userInput)) {
+                // valid direction -> set current location as the new one
                 currentLocation = locations.get(currentLocation.getDirection(userInput));
                 System.out.println(currentLocation.getName() + "\n" + currentLocation.getDescription());
             } else {
+                // invalid command
                 System.err.println("You can't get there...");
             }
         }
@@ -80,6 +83,7 @@ public class Zork {
                 data.add(line);
             }
             br.close();
+
         } catch (FileNotFoundException e) {
             System.err.println("ERROR> File not found.");
         } catch (IOException e) {
